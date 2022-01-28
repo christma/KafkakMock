@@ -10,5 +10,6 @@ public class Constants {
     public static String HDFS_LOG_HOME = "/home/";
     public static String BROKERS = "localhost:9092";
     public static String TOPIC = "mock";
+    public static String SINK_TOPIC = "savemock";
 
 }

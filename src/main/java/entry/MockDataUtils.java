@@ -7,6 +7,7 @@ import java.util.Random;
 public class MockDataUtils {
     static String[] provinceArray = {"北京", "上海", "重庆", "天津", "香港", "澳门", "台湾"};
 
+
     public static String gender() {
         double random = Math.random();
         if (random > 0.4)
