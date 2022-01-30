@@ -14,7 +14,7 @@ public class FlinkKafkaConsumerUtils {
         properties.setProperty("client.id", String.format("consumer-%s-%d", groupId, System.currentTimeMillis()));
         properties.setProperty("group.id", groupId);
         properties.setProperty("max.partition.fetch.bytes", "3145728");
-        properties.setProperty("auto.offset.reset", "earliest");
+        properties.setProperty("auto.offset.reset", "latest");
         properties.setProperty("heartbeat.interval.ms", "10000");
         properties.setProperty("flink.partition-discovery.interval-millis", "60000");
         properties.setProperty("session.timeout.ms", "60000");
