@@ -1,7 +1,6 @@
 package mock;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import entry.MockDataUtils;
 import entry.OrderInfo;
 import org.apache.kafka.clients.producer.Producer;
