@@ -7,6 +7,8 @@ import org.apache.kafka.clients.producer.Producer;
 import utils.ETLUtils;
 import utils.KafkaProducerUtils;
 
+import java.util.Random;
+
 //
 //private String id;
 //private String gender;
@@ -36,9 +38,10 @@ public class MockData {
 
     public static void main(String[] args) throws InterruptedException {
         MockData mockData = new MockData();
+        Random random = new Random();
         while (true) {
             mockData.mock();
-            Thread.sleep(1000);
+            Thread.sleep(random.nextInt(2000));
         }
     }
 
