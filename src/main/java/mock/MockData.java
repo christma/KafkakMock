@@ -24,12 +24,14 @@ public class MockData {
         int age = MockDataUtils.age();
         long price = MockDataUtils.bidPrice();
         String os = MockDataUtils.os();
+        long ts = MockDataUtils.getTs();
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setId(id);
         orderInfo.setOs(os);
         orderInfo.setGender(gender);
         orderInfo.setAge(age);
         orderInfo.setPrice(price);
+        orderInfo.setTs(ts);
         String jsonString = JSON.toJSONString(orderInfo);
         System.out.println(jsonString);
         ETLUtils.sendKafka(producer, "mock", jsonString);
@@ -41,7 +43,7 @@ public class MockData {
         Random random = new Random();
         while (true) {
             mockData.mock();
-            Thread.sleep(random.nextInt(2000));
+            Thread.sleep(random.nextInt(5000));
         }
     }
 

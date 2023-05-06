@@ -7,6 +7,10 @@ import java.util.Random;
 public class MockDataUtils {
     static String[] provinceArray = {"北京", "上海", "重庆", "天津", "香港", "澳门", "台湾"};
 
+    public static long getTs() {
+        long currentTimeMillis = System.currentTimeMillis();
+        return currentTimeMillis;
+    }
 
     public static String gender() {
         double random = Math.random();

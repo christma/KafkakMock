@@ -15,5 +15,6 @@ public class OrderInfo {
     private Integer age;
     private Long price;
     private String os;
+    private Long ts;
 
 }

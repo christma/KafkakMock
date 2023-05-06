@@ -5,6 +5,8 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
+import java.sql.Timestamp;
+
 public class ETLUtils {
 
     public static void sendKafka(Producer producer, String topic, String values) {
@@ -19,7 +21,7 @@ public class ETLUtils {
                 e.printStackTrace();
                 return;
             }
-            System.out.println("时间戳: " + recordMetadata.timestamp() + ", 主题: " + recordMetadata.topic() + ", 分区 :" + recordMetadata.partition() + "位移: " + recordMetadata.offset());
+            System.out.println("时间戳: " + new Timestamp(recordMetadata.timestamp()) + ", 主题: " + recordMetadata.topic() + ", 分区 :" + recordMetadata.partition() + "位移: " + recordMetadata.offset());
         }
     }
 }
