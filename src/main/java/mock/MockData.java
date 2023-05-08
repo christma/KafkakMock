@@ -19,7 +19,8 @@ public class MockData {
     Producer producer = KafkaProducerUtils.getProducer();
 
     public void mock() {
-        int id = MockDataUtils.Id();
+//        int id = MockDataUtils.Id();
+        int id = MockDataUtils.SkewId();
         String gender = MockDataUtils.gender();
         int age = MockDataUtils.age();
         long price = MockDataUtils.bidPrice();
@@ -43,7 +44,7 @@ public class MockData {
         Random random = new Random();
         while (true) {
             mockData.mock();
-            Thread.sleep(random.nextInt(5000));
+            Thread.sleep(random.nextInt(500));
         }
     }
 

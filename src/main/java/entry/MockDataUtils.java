@@ -29,6 +29,15 @@ public class MockDataUtils {
         Random random = new Random();
         return random.nextInt(10);
     }
+    public static int SkewId() {
+        Random random = new Random();
+        int i = random.nextInt(10);
+        if(i > 2){
+            return 1;
+        }else {
+            return i;
+        }
+    }
 
     public static String country() {
         double random = Math.random();
@@ -126,5 +135,12 @@ public class MockDataUtils {
     public static long creativeId(long unitId) {
         int prefix = new Random(unitId).nextInt(100000);
         return prefix * 10 + new Random().nextInt(10);
+    }
+
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(SkewId());
+        }
     }
 }
