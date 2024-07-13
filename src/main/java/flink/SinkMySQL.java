@@ -1,8 +1,8 @@
 package flink;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import entry.SinkInfo;
 import entry.SomeInfo;
 import org.apache.commons.compress.utils.Lists;
@@ -58,7 +58,7 @@ public class SinkMySQL {
                         String body = JSON.parseObject(value).getString("body");
                         JSONObject body1 = JSON.parseObject(body);
                         Long tms = body1.getLong("time");
-                        Timestamp time = body1.getTimestamp("time");//2022-02-17 23:28:04.629
+                        long time = body1.getLongValue("time");//2022-02-17 23:28:04.629
                         String orgId = body1.getString("orgId");
                         JSONArray vars = body1.getJSONArray("vars");
                         SomeInfo someInfo = new SomeInfo();
@@ -67,13 +67,13 @@ public class SinkMySQL {
                             String maskCode = vars.getJSONObject(i).getString("maskCode");
                             Integer values = vars.getJSONObject(i).getInteger("value");
                             Integer quality = vars.getJSONObject(i).getInteger("quality");
-                            String s = time.toString();
+                            String s = String.valueOf(time);
                             int year = Integer.parseInt(s.substring(0, 4));
                             int month = Integer.parseInt(s.substring(5, 7));
                             int tmsDay = Integer.parseInt(s.substring(8, 10));
                             int hours = Integer.parseInt(s.substring(11, 13));
                             int tmsMinutes = Integer.parseInt(s.substring(14, 16));
-                            int ceil = (int) Math.ceil(time.getMinutes() / 1);
+                            int ceil = (int) Math.ceil(new Timestamp(time).getMinutes()/ 1);
                             someInfo.set_year(year);
                             someInfo.set_month(month);
                             someInfo.set_day(tmsDay);

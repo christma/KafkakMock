@@ -1,8 +1,8 @@
 package mock;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import entry.Info;
 import entry.KSMockDataUtils;
 import org.apache.kafka.clients.producer.Producer;
@@ -26,7 +26,7 @@ public class MockKaisi {
             info.setValue(KSMockDataUtils.value());
             info.setTime(KSMockDataUtils.time());
             info.setQuality(KSMockDataUtils.quality());
-            Object json = JSONObject.toJSON(info);
+            Object json = JSONObject.toJSONString(info);
             vars.add(json);
         }
         JSONObject jsonObject = new JSONObject();
