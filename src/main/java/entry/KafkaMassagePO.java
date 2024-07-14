@@ -20,6 +20,9 @@ public class KafkaMassagePO {
     private String behavior_name;
     private String event_context;
 
+    public KafkaMassagePO() {
+    }
+
     public KafkaMassagePO(String event_id, String event_type, String event_level, String event_name, String event_time, String event_target_id, String user_id_str, Integer user_id_int, Integer behavior_id, String behavior_name, String event_context) {
         this.event_id = event_id;
         this.event_type = event_type;

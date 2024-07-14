@@ -1,20 +1,12 @@
 package utils;
 
+import com.alibaba.fastjson2.JSONObject;
+import entry.KafkaMassagePO;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class KafkaMassageDatas {
-//    private String event_id;
-//    private String event_type;
-//    private String event_level;
-//    private String event_name;
-//    private String event_time;
-//    private String event_target_id;
-//    private String user_id_str;
-//    private Integer user_id_int;
-//    private Integer behavior_id;
-//    private String behavior_name;
-//    private String event_context;
+public class KafkaMassageData {
 
 
     private static final String[] eventIds = {"event1", "event2", "event3", "event4", "event5", "event6", "event7", "event8", "event9", "event10"};
@@ -26,52 +18,70 @@ public class KafkaMassageDatas {
     private static final String[] behaviorNames = {"behavior1", "behavior2", "behavior3", "behavior4"};
 
 
-    public static String getEventId() {
+    private static String getEventId() {
         double random = Math.random() * 10;
         return eventIds[(int) (random % eventIds.length)];
     }
 
-    public static String getEventType() {
+    private static String getEventType() {
         return eventTypes[(int) (Math.random() * 10 % eventTypes.length)];
     }
 
-    public static String getEventLevel() {
+    private static String getEventLevel() {
         return eventLevels[(int) (Math.random() * 10 % eventLevels.length)];
     }
 
-    public static String getEventName() {
+    private static String getEventName() {
         return eventNames[(int) (Math.random() * 10 % eventNames.length)];
     }
 
-    public static String getEventTarget() {
+    private static String getEventTarget() {
         return eventTargets[(int) (Math.random() * 10 % eventTargets.length)];
     }
 
-    public static String userIdStrs() {
+    private static String userIdStrs() {
         return userIdStrs[(int) (Math.random() * 10 % userIdStrs.length)];
     }
 
-//    public static Integer getUserIdInt() {
-//        String string = userIdStrs();
-//        return Integer.parseInt(string.substring(string.length() - 1));
-//    }
+    private static Integer getUserIdInt(String userIdStr) {
+        return Integer.parseInt(userIdStr.substring(userIdStr.length() - 1));
+    }
 
-    public static String getBehaviorName() {
+    private static String getBehaviorName() {
         return behaviorNames[(int) (Math.random() * 10 % behaviorNames.length)];
     }
 
-    public static Integer getBehaviorId() {
-        String str = getBehaviorName();
-        return Integer.parseInt(str.substring(str.length() - 1));
+    private static Integer getBehaviorId(String BehaviorName) {
+        return Integer.parseInt(BehaviorName.substring(BehaviorName.length() - 1));
     }
 
-    public static String getEventTime() {
+    private static String getEventTime() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
 
+    public static String getJsonMassage() {
+        String user_id_str = userIdStrs();
+        String behavior_name = getBehaviorName();
+        KafkaMassagePO po = new KafkaMassagePO();
+        po.setEvent_id(getEventId());
+        po.setEvent_type(getEventType());
+        po.setEvent_level(getEventLevel());
+        po.setEvent_name(getEventName());
+        po.setEvent_time(getEventTime());
+        po.setEvent_target_id(getEventTarget());
+        po.setUser_id_str(user_id_str);
+        po.setUser_id_int(getUserIdInt(user_id_str));
+        po.setBehavior_id(getBehaviorId(behavior_name));
+        po.setBehavior_name(behavior_name);
+        po.setEvent_context("");
+        return JSONObject.toJSONString(po);
+    }
+
     public static void main(String[] args) {
-        System.out.println(KafkaMassageDatas.getBehaviorId());
+        for (int i = 0; i < 10; i++) {
+            System.out.println(getJsonMassage());
+        }
     }
 }
