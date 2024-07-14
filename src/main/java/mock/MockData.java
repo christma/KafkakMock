@@ -13,6 +13,7 @@ public class MockData {
 
     public void mock() {
         String jsonString = KafkaMassageData.getJsonMassage();
+        System.out.println(jsonString);
         ETLUtils.sendKafka(producer, "mock_test", jsonString);
     }
 
@@ -21,7 +22,7 @@ public class MockData {
         Random random = new Random();
         while (true) {
             mockData.mock();
-            Thread.sleep(random.nextInt(1000));
+            Thread.sleep(random.nextInt(5000));
         }
     }
 
