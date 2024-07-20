@@ -6,6 +6,8 @@ import entry.KafkaMassagePO;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static java.lang.Thread.sleep;
+
 public class KafkaMassageData {
 
 
@@ -58,7 +60,12 @@ public class KafkaMassageData {
     private static String getEventTime() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return now.format(formatter);
+        double random = Math.random();
+        if (random < 0.2) {
+            return now.minusSeconds((long) (random * 1000)).format(formatter);
+        } else {
+            return now.format(formatter);
+        }
     }
 
     public static String getJsonMassage() {
@@ -80,8 +87,13 @@ public class KafkaMassageData {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            System.out.println(getJsonMassage());
+        for (int i = 0; i < 100; i++) {
+            System.out.println(KafkaMassageData.getEventTime());
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

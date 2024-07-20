@@ -25,7 +25,7 @@ public class ConsumerData {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer<>("mock", new SimpleStringSchema(), configByKafkaServer());
+        FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer<>("mock-risk", new SimpleStringSchema(), configByKafkaServer());
 
         env.setParallelism(1);
         consumer.setStartFromEarliest();
