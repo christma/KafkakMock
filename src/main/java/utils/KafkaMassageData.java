@@ -11,7 +11,7 @@ import static java.lang.Thread.sleep;
 public class KafkaMassageData {
 
 
-    private static final String[] eventIds = {"event1", "event2", "event3", "event4", "event5", "event6", "event7", "event8", "event9", "event10"};
+    private static final String[] eventIds = {"event1", "event2", "event3", "event4", "event5"};
     private static final String[] eventTypes = {"CLICK", "VIEW", "COUPON", "SUBMIT"};
     private static final String[] eventLevels = {"NORMAL", "LOW", "MEDIUM", "HIGH"};
     private static final String[] eventNames = {"eventName1", "eventName2", "eventName3", "eventName4", "eventName5"};

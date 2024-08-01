@@ -12,7 +12,8 @@ public class MockData {
     Producer producer = KafkaProducerUtils.getProducer();
 
     public void mock() {
-        String jsonString = KafkaMassageData.getJsonMassage();
+//        String jsonString = KafkaMassageData.getJsonMassage();
+        String jsonString = "value";
         System.out.println(jsonString);
         ETLUtils.sendKafka(producer, "mock-risk", jsonString);
     }

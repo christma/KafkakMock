@@ -1,9 +1,6 @@
 package utils;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
 
@@ -23,6 +20,10 @@ public class KafkaProducerUtils {
         //配置key的序列化类
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("producer.type", "async");
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true"); // 启用幂等性
+        props.put(ProducerConfig.ACKS_CONFIG, "all"); // 所有副本都需要确认
+        props.put(ProducerConfig.RETRIES_CONFIG, Integer.MAX_VALUE); // 最大重试次数
+        props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
 
         props.put("request.required.acks", "-1");
         producer = new KafkaProducer<>(props);
